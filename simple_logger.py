@@ -1,4 +1,7 @@
 import numpy as np
+from datetime import datetime
+import os
+
 
 def log2textfile(data,nametxtfile):
     file_open = open(str(str(nametxtfile)),"a")
@@ -8,4 +11,8 @@ def log2textfile(data,nametxtfile):
 
 if __name__=="__main__":
     dat = np.random.randint(2, size=10)
-    log2textfile(dat,'random_.txt')
+    date_ = datetime.today().strftime('%Y-%m-%d-%H:%M:%S')
+    directory = str('log_')+str(date_)
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+    log2textfile(dat,(str(directory)+'/'+('random_.txt')))
